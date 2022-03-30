@@ -1,6 +1,15 @@
-<head>
-this is for testing
-</head>
-<html>
-<span>Verifing the data</span>
-</html>
+#Parameters
+$AppCatalogURL = "https://crescent.sharepoint.com/sites/Apps"
+$AppFilePath = "C:\Temp\script-editor.sppkg"
+ 
+#Connect to SharePoint Online App Catalog site
+Connect-PnPOnline -Url $AppCatalogURL -Interactive
+ 
+#Add App to App catalog - upload app to sharepoint online app catalog using powershell
+$App = Add-PnPApp -Path $AppFilePath
+ 
+#Deploy App to the Tenant
+Publish-PnPApp -Identity $App.ID -Scope Tenant
+
+
+#Read more: https://www.sharepointdiary.com/2019/12/deploy-app-to-app-catalog-in-sharepoint-online.html#ixzz7P2Xrt9OP
